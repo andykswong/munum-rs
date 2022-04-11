@@ -204,7 +204,7 @@ if #[cfg(any(feature = "std", feature = "libm"))] {
 
 /// Creates the {@link Mat4} orthographic projection matrix.
 /// To apply a glTF orthographic camera, use: left = -xmag, right = xmag, bottom = -ymag, top = ymag.
-/// See: https://www.khronos.org/registry/glTF/specs/2.0/glTF-2.0.html#projection-matrices
+/// See: <https://www.khronos.org/registry/glTF/specs/2.0/glTF-2.0.html#projection-matrices>
 ///
 /// # Examples
 /// ```
@@ -241,7 +241,7 @@ pub fn ortho<T: Copy + NumAssign>(
 }
 
 /// Creates the 4x4 perspective projection using glTF's formula. Use infinite projection if zfar = Infinity.
-/// See: https://www.khronos.org/registry/glTF/specs/2.0/glTF-2.0.html#projection-matrices
+/// See: <https://www.khronos.org/registry/glTF/specs/2.0/glTF-2.0.html#projection-matrices>
 ///
 /// # Examples
 /// ```

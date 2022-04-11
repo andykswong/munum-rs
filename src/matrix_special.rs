@@ -325,7 +325,7 @@ impl<T: Copy + NumAssign> Mat3<T> {
 
     /// Invert this matrix.
     /// If this matrix is not invertible, this method returns false and the matrix is unchanged.
-    /// For formula, see: https://en.wikipedia.org/wiki/Invertible_matrix#Inversion_of_3_%C3%97_3_matrices
+    /// For formula, see: <https://en.wikipedia.org/wiki/Invertible_matrix#Inversion_of_3_%C3%97_3_matrices>
     ///
     /// # Examples
     /// ```

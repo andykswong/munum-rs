@@ -19,6 +19,7 @@ munum = "0.1.0"
 Features:
 - `std` - enabled by default.
 - `libm` - can be used instead of `std` to enable trigonometry related functions in `no_std` environment
+- `serde` - enable `serde` serialize/deserialize implementations
 
 ## [Documentation](https://docs.rs/munum)
 See Docs.rs: https://docs.rs/munum

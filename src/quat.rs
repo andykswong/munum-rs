@@ -384,7 +384,7 @@ impl<T: Copy + NumAssign> Quaternion<T> {
     }
 
     /// Returns the result from rotating given `Vec3` by this `Quaternion`, using the formula v' = q * v * q^-1.
-    /// See: https://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation#Using_quaternion_as_rotations
+    /// See: <https://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation#Using_quaternion_as_rotations>
     ///
     /// # Examples
     /// ```
@@ -602,3 +602,30 @@ impl<T: Copy + NumAssign> Mul for Quaternion<T> {
 }
 
 // endregion: Arithmetic Ops
+
+#[cfg(feature = "serde")]
+#[cfg(test)]
+mod tests {
+    use alloc::vec;
+    use serde_json::{json, Value};
+
+    use super::Quaternion;
+
+    #[test]
+    fn test_serialize() {
+        let q = Quaternion::from_array([1., 2., 3., 4.]);
+        let expected_json: Value = json!([1., 2., 3., 4.]);
+
+        let json: Value = serde_json::to_value(q).unwrap();
+        assert_eq!(json, expected_json);
+    }
+
+    #[test]
+    fn test_deserialize() {
+        let json: Value = json!([1., 2., 3., 4.]);
+
+        let q: Quaternion = serde_json::from_value(json).unwrap();
+
+        assert_eq!(*q.as_ref(), [1., 2., 3., 4.]);
+    }
+}

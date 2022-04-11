@@ -218,7 +218,7 @@ mod serde_impl {
             let mut arr = [[T::zero(); R]; C];
             for c in 0..C {
                 for r in 0..R {
-                    if let Some(value) =  seq.next_element()? {
+                    if let Some(value) = seq.next_element()? {
                         arr[c][r] = value;
                     }
                 }
@@ -235,5 +235,32 @@ mod serde_impl {
             let arr = deserializer.deserialize_seq(MatrixArrayDeserializer(PhantomData))?;
             Ok(Matrix::new(arr))
         }
+    }
+}
+
+#[cfg(feature = "serde")]
+#[cfg(test)]
+mod tests {
+    use alloc::vec;
+    use serde_json::{json, Value};
+
+    use super::Matrix;
+
+    #[test]
+    fn test_serialize() {
+        let mat = Matrix::<f32, 3, 3>::new([[1., 2., 3.], [4., 5., 6.], [7., 8., 9.]]);
+        let expected_json: Value = json!([1., 2., 3., 4., 5., 6., 7., 8., 9.]);
+
+        let json: Value = serde_json::to_value(mat).unwrap();
+        assert_eq!(json, expected_json);
+    }
+
+    #[test]
+    fn test_deserialize() {
+        let json: Value = json!([1., 2., 3., 4., 5., 6., 7., 8., 9.]);
+
+        let mat: Matrix<f32, 3, 3> = serde_json::from_value(json).unwrap();
+
+        assert_eq!(*mat.as_ref(), [1., 2., 3., 4., 5., 6., 7., 8., 9.]);
     }
 }
