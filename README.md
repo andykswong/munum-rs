@@ -1,3 +1,6 @@
+# [⚠ DEPRECATED - Moved to muge mono-repo](https://github.com/andykswong/muge)
+<br />
+
 <h1 align="center">🅼🆄🅽🆄🅼</h1>
 <h2 align="center">Rust Micro Library for 3D Math</h2>
 <br />
